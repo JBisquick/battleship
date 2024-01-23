@@ -17,6 +17,7 @@ function createShip(length) {
   };
 
   return {
+    length,
     getHitCount,
     hit,
     isSunk
