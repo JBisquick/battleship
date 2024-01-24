@@ -35,3 +35,16 @@ test('attack has hit ship', () => {
   board.recieveAttack([3, 5]);
   expect(destroyer.getHitCount()).toBe(1);
 });
+
+test('game is not over', () => {
+  board.placeShip(destroyer, [3, 5], 'row');
+  board.recieveAttack([3, 5]);
+  expect(board.isGameOver()).toBe(false);
+});
+
+test('game is over', () => {
+  board.placeShip(destroyer, [3, 5], 'row');
+  board.recieveAttack([3, 5]);
+  board.recieveAttack([3, 6]);
+  expect(board.isGameOver()).toBe(true);
+});

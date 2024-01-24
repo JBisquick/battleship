@@ -29,10 +29,24 @@ function createGameboard () {
     }
   };
 
+  const isGameOver = () => {
+    for (const row of board) {
+      for (const cell of row) {
+        // if an object is not sunk then it is not over
+        if (typeof cell === 'object' && cell.isSunk() === false) {
+          return false;
+        }
+      }
+    }
+    // else it is over
+    return true;
+  };
+
   return {
     getBoard,
     placeShip,
-    recieveAttack
+    recieveAttack,
+    isGameOver
   };
 }
 
