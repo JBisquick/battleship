@@ -24,3 +24,14 @@ test('ship is on board (row)', () => {
   expect(board.getBoard()[3][5]).toBe(destroyer);
   expect(board.getBoard()[3][6]).toBe(destroyer);
 });
+
+test('attack has missed', () => {
+  board.recieveAttack([3, 5]);
+  expect(board.getBoard()[3][5]).toBe('missed');
+});
+
+test('attack has hit ship', () => {
+  board.placeShip(destroyer, [3, 5], 'row');
+  board.recieveAttack([3, 5]);
+  expect(destroyer.getHitCount()).toBe(1);
+});

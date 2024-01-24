@@ -20,9 +20,19 @@ function createGameboard () {
     }
   };
 
+  const recieveAttack = (coord) => {
+    const cell = board[coord[0]][coord[1]];
+    if (cell === 'empty') {
+      board[coord[0]][coord[1]] = 'missed';
+    } else if (typeof cell === 'object') {
+      cell.hit();
+    }
+  };
+
   return {
     getBoard,
-    placeShip
+    placeShip,
+    recieveAttack
   };
 }
 
