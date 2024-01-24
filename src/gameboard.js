@@ -8,22 +8,22 @@ function createGameboard () {
     return board;
   };
 
-  const placeShip = (ship, coord, direction) => {
-    board[coord[0]][coord[1]] = ship;
+  const placeShip = (ship, x, y, direction) => {
+    board[y][x] = ship;
     for (let i = 1; i < ship.length; i++) {
       if (direction === 'col') {
-        coord[0] += 1;
+        y += 1;
       } else if (direction === 'row') {
-        coord[1] += 1;
+        x += 1;
       }
-      board[coord[0]][coord[1]] = ship;
+      board[y][x] = ship;
     }
   };
 
-  const recieveAttack = (coord) => {
-    const cell = board[coord[0]][coord[1]];
+  const recieveAttack = (x, y) => {
+    const cell = board[y][x];
     if (cell === 'empty') {
-      board[coord[0]][coord[1]] = 'missed';
+      board[y][x] = 'missed';
     } else if (typeof cell === 'object') {
       cell.hit();
     }
