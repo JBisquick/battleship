@@ -5,8 +5,8 @@ const loadPlayerBoard = (gameboard) => {
       const space = document.createElement('div');
       space.classList.add('space');
       if (typeof cell === 'object') {
-        space.style.backgroundColor = 'grey';
-      }
+        space.classList.add('ship');
+      } 
       board.appendChild(space);
     }
   }
@@ -20,6 +20,7 @@ const loadComputerBoard = (compGameboard) => {
       space.classList.add('opSpace');
       board.appendChild(space);
 
+      // predetermine if they are hits or not
       if (cell === 'empty') {
         space.classList.add('miss');
       } else {
@@ -33,8 +34,31 @@ const loadPlayerAttack = (e) => {
   e.target.classList.remove('opSpace');
 };
 
+const loadCompAttack = (x, y, playerNodes) => {
+  let destination = y * 10;
+  destination += x;
+  let i = 0;
+
+  for (let node of playerNodes) {
+    // If the correct node then continue
+    if (i === destination) {
+      
+      if (node.classList.contains('ship')) {
+        node.classList.add('hit');
+        node.classList.remove('ship');
+      } else {
+        node.classList.add('miss');
+      }
+
+      node.classList.remove('space');
+    }
+    i++;
+  }
+};
+
 export {
   loadPlayerBoard,
   loadComputerBoard,
-  loadPlayerAttack
+  loadPlayerAttack,
+  loadCompAttack
 };

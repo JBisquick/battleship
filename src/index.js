@@ -34,4 +34,4 @@ computerBoard.placeShip(destroyerC, 0, 4, 'row');
 computerBoard.placeShip(battleshipC, 4, 4, 'row');
 computerBoard.placeShip(carrierC, 9, 2, 'col');
 
-createGameloop(player, playerBoard, computerBoard);
+createGameloop(player, computer, playerBoard, computerBoard);

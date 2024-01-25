@@ -41,6 +41,7 @@ function createPlayer() {
     const randomCoord = unvisited[randomIndex];
     updateUnvisited(randomCoord[0], randomCoord[1]);
     gameboard.recieveAttack(randomCoord[0], randomCoord[1]);
+    return [randomCoord[0], randomCoord[1]];
   };
 
   return {
