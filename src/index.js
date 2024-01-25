@@ -3,6 +3,7 @@ import { createGameboard } from './gameboard';
 import { createShip } from './ship.js';
 import { createPlayer } from './player.js';
 import {
+  loadComputerBoard,
   loadPlayerBoard
 } from './dom.js';
 
@@ -37,3 +38,4 @@ computerBoard.placeShip(battleshipC, 4, 4, 'row');
 computerBoard.placeShip(carrierC, 9, 2, 'col');
 
 loadPlayerBoard(playerBoard.getBoard());
+loadComputerBoard(computerBoard.getBoard());
