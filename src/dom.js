@@ -16,10 +16,30 @@ const loadComputerBoard = (compGameboard) => {
   const board = document.querySelector('#computer');
   for (const row of compGameboard) {
     for (const cell of row) {
+      let attack;
+      if (cell === 'empty') {
+        attack = 'miss';
+      } else {
+        attack = 'hit';
+      }
+
       const space = document.createElement('div');
       space.classList.add('opSpace');
       board.appendChild(space);
+      
+      space.addEventListener('click', (e) => {
+        loadPlayerAttack(e, attack);
+      });
     }
+  }
+};
+
+const loadPlayerAttack = (e, attack) => {
+  e.target.classList.remove('space');
+  if (attack === 'miss') {
+    e.target.classList.add('miss');
+  } else {
+    e.target.classList.add('hit');
   }
 };
 
