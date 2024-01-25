@@ -40,6 +40,7 @@ function createPlayer() {
   const computerAttack = (gameboard) => {
     const randomIndex = Math.floor(Math.random() * unvisited.length);
     const randomCoord = unvisited[randomIndex];
+    updateUnvisited(randomCoord[0], randomCoord[1]);
     gameboard.recieveAttack(randomCoord[0], randomCoord[1]);
   };
 
