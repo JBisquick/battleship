@@ -16,26 +16,21 @@ const loadComputerBoard = (compGameboard) => {
   const board = document.querySelector('#computer');
   for (const row of compGameboard) {
     for (const cell of row) {
-      let attack;
-      if (cell === 'empty') {
-        attack = 'miss';
-      } else {
-        attack = 'hit';
-      }
-
       const space = document.createElement('div');
       space.classList.add('opSpace');
       board.appendChild(space);
-      
-      space.addEventListener('click', (e) => {
-        loadPlayerAttack(e, attack);
-      });
+
+      if (cell === 'empty') {
+        space.classList.add('miss');
+      } else {
+        space.classList.add('hit');
+      }
     }
   }
 };
 
 const loadPlayerAttack = (e, attack) => {
-  e.target.classList.remove('space');
+  e.target.classList.remove('opSpace');
   if (attack === 'miss') {
     e.target.classList.add('miss');
   } else {
@@ -45,5 +40,6 @@ const loadPlayerAttack = (e, attack) => {
 
 export {
   loadPlayerBoard,
-  loadComputerBoard
+  loadComputerBoard,
+  loadPlayerAttack
 };

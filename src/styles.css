@@ -9,13 +9,6 @@
   grid-template-columns: repeat(10, 50px);
 }
 
-.space,
-.opSpace {
-  border: 1px solid black;
-  width: 50px;
-  height: 50px;
-}
-
 .opSpace:hover {
   cursor: pointer;
 }
@@ -26,4 +19,12 @@
 
 .hit {
   background-color: red;
+}
+
+.space,
+.opSpace {
+  border: 1px solid black;
+  background-color: white;
+  width: 50px;
+  height: 50px;
 }

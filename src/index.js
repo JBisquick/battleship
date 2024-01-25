@@ -2,10 +2,7 @@ import './styles.css';
 import { createGameboard } from './gameboard';
 import { createShip } from './ship.js';
 import { createPlayer } from './player.js';
-import {
-  loadComputerBoard,
-  loadPlayerBoard
-} from './dom.js';
+import { createGameloop } from './gameloop';
 
 let player = createPlayer();
 let computer = createPlayer();
@@ -37,5 +34,4 @@ computerBoard.placeShip(destroyerC, 0, 4, 'row');
 computerBoard.placeShip(battleshipC, 4, 4, 'row');
 computerBoard.placeShip(carrierC, 9, 2, 'col');
 
-loadPlayerBoard(playerBoard.getBoard());
-loadComputerBoard(computerBoard.getBoard());
+createGameloop(playerBoard.getBoard(), computerBoard.getBoard());
