@@ -23,8 +23,14 @@ function createPlayer() {
   }
 
   const updateUnvisited = (x, y) => {
-    const index = unvisited.indexOf([x, y]);
-    unvisited = unvisited.splice(index, 1);
+    let i = 0;
+    for (let cell of unvisited) {
+      if (x === cell[0] && y === cell[1]) {
+        break;
+      }
+      i++;
+    }
+    unvisited.splice(i, 1);
   };
 
   const attackBoard = (gameboard, x, y) => {
