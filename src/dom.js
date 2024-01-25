@@ -29,13 +29,8 @@ const loadComputerBoard = (compGameboard) => {
   }
 };
 
-const loadPlayerAttack = (e, attack) => {
+const loadPlayerAttack = (e) => {
   e.target.classList.remove('opSpace');
-  if (attack === 'miss') {
-    e.target.classList.add('miss');
-  } else {
-    e.target.classList.add('hit');
-  }
 };
 
 export {
