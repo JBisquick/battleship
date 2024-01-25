@@ -2,7 +2,6 @@ function createPlayer() {
   let unvisited = [];
   let coord = [0, 0];
   for (let i = 0; i < 100; i++) {
-    console.log(unvisited);
     unvisited.push([coord[0], coord[1]]);
     // increase x
     if (coord[0] < 9) {
