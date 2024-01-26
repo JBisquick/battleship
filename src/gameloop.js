@@ -2,7 +2,8 @@ import {
   loadComputerBoard,
   loadPlayerBoard,
   loadPlayerAttack,
-  loadCompAttack
+  loadCompAttack,
+  loadGameover
 } from './dom.js';
 
 const createGameloop = (player, computer, playGameboard, compGameboard) => {
@@ -23,6 +24,7 @@ const createGameloop = (player, computer, playGameboard, compGameboard) => {
 
       const saveLocation = computer.computerAttack(playGameboard);
       loadCompAttack(saveLocation[0], saveLocation[1], playSpaces);
+      loadGameover(playGameboard, compGameboard);
 
       this.removeEventListener('click', eventHandler);
     });

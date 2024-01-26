@@ -56,9 +56,20 @@ const loadCompAttack = (x, y, playerNodes) => {
   }
 };
 
+const loadGameover = (playerBoard, opBoard) => {
+  const gameover = document.querySelector('.gameover');
+
+  if (opBoard.isGameOver()) {
+    gameover.textContent = 'You Have Won!';
+  } else if (playerBoard.isGameOver()) {
+    gameover.textContent = 'You Have Lost!';
+  }
+};
+
 export {
   loadPlayerBoard,
   loadComputerBoard,
   loadPlayerAttack,
-  loadCompAttack
+  loadCompAttack,
+  loadGameover
 };
