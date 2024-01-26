@@ -17,12 +17,14 @@ const createGameloop = (player, computer, playGameboard, compGameboard) => {
     const y = Math.floor(i / 10)
     const x = i % 10;
 
-    node.addEventListener('click', (e) => {
+    node.addEventListener('click', function eventHandler(e) {
       loadPlayerAttack(e);
       player.attackBoard(compGameboard, x, y);
 
-      const compAttack = computer.computerAttack(playGameboard);
-      loadCompAttack(compAttack[0], compAttack[1], playSpaces);
+      const saveLocation = computer.computerAttack(playGameboard);
+      loadCompAttack(saveLocation[0], saveLocation[1], playSpaces);
+
+      this.removeEventListener('click', eventHandler);
     });
 
     i++;
