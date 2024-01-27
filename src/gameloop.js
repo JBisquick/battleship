@@ -6,6 +6,10 @@ import {
   loadGameover
 } from './dom.js';
 
+const setupGame = (board) => {
+  loadPlayerBoard(board.getBoard());
+};
+
 const createGameloop = (player, computer, playGameboard, compGameboard) => {
   loadPlayerBoard(playGameboard.getBoard());
   loadComputerBoard(compGameboard.getBoard());
@@ -33,4 +37,4 @@ const createGameloop = (player, computer, playGameboard, compGameboard) => {
   }
 };
 
-export { createGameloop };
+export { createGameloop, setupGame };

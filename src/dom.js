@@ -13,7 +13,12 @@ const loadPlayerBoard = (gameboard) => {
 };
 
 const loadComputerBoard = (compGameboard) => {
-  const board = document.querySelector('#computer');
+  const container = document.querySelector('.gameboard');
+
+  const board = document.createElement('div');
+  board.setAttribute('id', 'computer');
+  container.appendChild(board);
+  
   for (const row of compGameboard) {
     for (const cell of row) {
       const space = document.createElement('div');
