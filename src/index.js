@@ -1,8 +1,7 @@
 import './styles.css';
 import { createGameboard } from './gameboard';
-import { createShip } from './ship.js';
 import { createPlayer } from './player.js';
-import { createGameloop, setupGame } from './gameloop';
+import { setupGame } from './gameloop';
 
 let player = createPlayer();
 let computer = createPlayer();

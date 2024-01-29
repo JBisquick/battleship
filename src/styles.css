@@ -9,6 +9,7 @@
   grid-template-columns: repeat(10, 50px);
 }
 
+.space,
 .opSpace:hover {
   cursor: pointer;
 }
