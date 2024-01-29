@@ -5,8 +5,7 @@ import {
   loadPlayerAttack,
   loadCompAttack,
   loadGameover,
-  loadShipText,
-  removeShipText
+  loadShipText
 } from './dom.js';
 
 let carrier = createShip(5, 'carrier');
@@ -21,8 +20,12 @@ const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => 
   container.innerHTML = '';
 
   loadPlayerBoard(playGameboard.getBoard());
+  loadShipText(shipList[ship].name);
+  let placeText = document.querySelector('.place-container');
+  placeText.style.display = 'block';
 
-  let playSpaces = document.querySelectorAll('.space');
+  const rotateButton = document.querySelector('.rotate-button');
+  const playSpaces = document.querySelectorAll('.space');
   let i = 0;
 
   for (let node of playSpaces) {
@@ -30,14 +33,14 @@ const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => 
     const x = i % 10;
 
     node.addEventListener('click', () => {
-      playGameboard.placeShip(shipList[ship], x, y, 'row');
+      playGameboard.placeShip(shipList[ship], x, y, rotateButton.value);
+
       ship++;
       if (ship < 5) {
         setupGame(player, computer, playGameboard, compGameboard, ship);
-        loadShipText(shipList[ship].name);
       } else {
         createGameloop(player, computer, playGameboard, compGameboard);
-        removeShipText();
+        placeText.style.display = 'none';
       }
     });
 
@@ -61,8 +64,8 @@ const createGameloop = (player, computer, playGameboard, compGameboard) => {
     const x = i % 10;
 
     node.addEventListener('click', function gameloop(e) {
-      loadPlayerAttack(e);
       player.attackBoard(compGameboard, x, y);
+      loadPlayerAttack(e);
 
       const saveLocation = computer.computerAttack(playGameboard);
       loadCompAttack(saveLocation[0], saveLocation[1], playSpaces);

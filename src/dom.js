@@ -77,17 +77,11 @@ const loadShipText = (shipName) => {
   ship.textContent = 'Place your ' + shipName;
 };
 
-const removeShipText = () => {
-  const ship = document.querySelector('.place-ship');
-  ship.textContent = '';
-}
-
 export {
   loadPlayerBoard,
   loadComputerBoard,
   loadPlayerAttack,
   loadCompAttack,
   loadGameover,
-  loadShipText,
-  removeShipText
+  loadShipText
 };
