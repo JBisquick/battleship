@@ -72,10 +72,22 @@ const loadGameover = (playerBoard, opBoard) => {
   }
 };
 
+const loadShipText = (shipName) => {
+  const ship = document.querySelector('.place-ship');
+  ship.textContent = 'Place your ' + shipName;
+};
+
+const removeShipText = () => {
+  const ship = document.querySelector('.place-ship');
+  ship.textContent = '';
+}
+
 export {
   loadPlayerBoard,
   loadComputerBoard,
   loadPlayerAttack,
   loadCompAttack,
-  loadGameover
+  loadGameover,
+  loadShipText,
+  removeShipText
 };

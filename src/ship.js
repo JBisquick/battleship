@@ -1,4 +1,4 @@
-function createShip(length) {
+function createShip(length, name) {
   let hitCount = 0;
 
   const getHitCount = () => {
@@ -18,6 +18,7 @@ function createShip(length) {
 
   return {
     length,
+    name,
     getHitCount,
     hit,
     isSunk

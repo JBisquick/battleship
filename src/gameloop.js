@@ -4,14 +4,16 @@ import {
   loadPlayerBoard,
   loadPlayerAttack,
   loadCompAttack,
-  loadGameover
+  loadGameover,
+  loadShipText,
+  removeShipText
 } from './dom.js';
 
-let carrier = createShip(5);
-let battleship = createShip(4);
-let destroyer = createShip(3);
-let submarine = createShip(3);
-let patrolBoat = createShip(2);
+let carrier = createShip(5, 'carrier');
+let battleship = createShip(4, 'battleship');
+let destroyer = createShip(3, 'destroyer');
+let submarine = createShip(3, 'submarine');
+let patrolBoat = createShip(2, 'patrol boat');
 let shipList = [carrier, battleship, destroyer, submarine, patrolBoat]
 
 const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => {
@@ -32,8 +34,10 @@ const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => 
       ship++;
       if (ship < 5) {
         setupGame(player, computer, playGameboard, compGameboard, ship);
+        loadShipText(shipList[ship].name);
       } else {
         createGameloop(player, computer, playGameboard, compGameboard);
+        removeShipText();
       }
     });
 
