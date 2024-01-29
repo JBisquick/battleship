@@ -11,4 +11,4 @@ let computerBoard = createGameboard();
 
 // createGameloop(player, computer, playerBoard, computerBoard);
 
-setupGame(playerBoard);
+setupGame(player, computer, playerBoard, computerBoard);

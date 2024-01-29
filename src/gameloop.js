@@ -7,13 +7,18 @@ import {
   loadGameover
 } from './dom.js';
 
+let carrier = createShip(5);
+let battleship = createShip(4);
 let destroyer = createShip(3);
+let submarine = createShip(3);
+let patrolBoat = createShip(2);
+let shipList = [carrier, battleship, destroyer, submarine, patrolBoat]
 
-const setupGame = (board) => {
+const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => {
   let container = document.querySelector('#player');
   container.innerHTML = '';
 
-  loadPlayerBoard(board.getBoard());
+  loadPlayerBoard(playGameboard.getBoard());
 
   let playSpaces = document.querySelectorAll('.space');
   let i = 0;
@@ -22,9 +27,14 @@ const setupGame = (board) => {
     const y = Math.floor(i / 10)
     const x = i % 10;
 
-    node.addEventListener('click', function setupShip (e) {
-      board.placeShip(destroyer, x, y, 'row');
-      setupGame(board);
+    node.addEventListener('click', () => {
+      playGameboard.placeShip(shipList[ship], x, y, 'row');
+      ship++;
+      if (ship < 5) {
+        setupGame(player, computer, playGameboard, compGameboard, ship);
+      } else {
+        createGameloop(player, computer, playGameboard, compGameboard);
+      }
     });
 
     i++;
@@ -32,6 +42,9 @@ const setupGame = (board) => {
 };
 
 const createGameloop = (player, computer, playGameboard, compGameboard) => {
+  let container = document.querySelector('#player');
+  container.innerHTML = '';
+
   loadPlayerBoard(playGameboard.getBoard());
   loadComputerBoard(compGameboard.getBoard());
 
