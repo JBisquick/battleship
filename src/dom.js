@@ -77,11 +77,55 @@ const loadShipText = (shipName) => {
   ship.textContent = 'Place your ' + shipName;
 };
 
+const rotateShipHover = () => {
+  const rotate = document.querySelector('.rotate-button');
+
+  if (rotate.value === 'row') {
+    rotate.value = 'col';
+  } else  {
+    rotate.value = 'row';
+  }
+};
+
+const loadShipHover = (shipLength) => {
+  const rotate = document.querySelector('.rotate-button');
+  let spaces = document.querySelectorAll('.space');
+  let width;
+  let height;
+
+  if (rotate.value === 'row') {
+    width = 50 * shipLength;
+    height = 50;
+  } 
+  if (rotate.value === 'col') {
+    width = 50;
+    height = 50 * shipLength;
+  } 
+  for (let space of spaces) {
+    const ogColor = space.style.backgroundColor;
+
+    space.addEventListener("mouseenter", function( event ) {   
+      space.style.backgroundColor = 'pink';
+      space.style.width = `${width}px`;
+      space.style.height = `${height}px`;
+      space.style.zIndex = '1';
+    }, false);
+    space.addEventListener("mouseleave", function( event ) {   
+      space.style.backgroundColor = ogColor;
+      space.style.width = '50px';
+      space.style.height = '50px';
+      space.style.zIndex = '0';
+    }, false);
+  }
+};
+
 export {
   loadPlayerBoard,
   loadComputerBoard,
   loadPlayerAttack,
   loadCompAttack,
   loadGameover,
-  loadShipText
+  loadShipText,
+  rotateShipHover,
+  loadShipHover
 };

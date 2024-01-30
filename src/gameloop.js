@@ -5,7 +5,8 @@ import {
   loadPlayerAttack,
   loadCompAttack,
   loadGameover,
-  loadShipText
+  loadShipText,
+  loadShipHover
 } from './dom.js';
 
 let carrier = createShip(5, 'carrier');
@@ -21,10 +22,15 @@ const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => 
 
   loadPlayerBoard(playGameboard.getBoard());
   loadShipText(shipList[ship].name);
+  loadShipHover(shipList[ship].length);
   let placeText = document.querySelector('.place-container');
   placeText.style.display = 'block';
 
   const rotateButton = document.querySelector('.rotate-button');
+  rotateButton.addEventListener('click', function changeHover() {
+    loadShipHover(shipList[ship].length);
+  });
+
   const playSpaces = document.querySelectorAll('.space');
   let i = 0;
 
