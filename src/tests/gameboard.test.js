@@ -48,3 +48,24 @@ test('game is over', () => {
   board.recieveAttack(6, 3);
   expect(board.isGameOver()).toBe(true);
 });
+
+test('correct placement', () => {
+  expect(board.isPlacePossible(destroyer, 5, 3, 'row')).toBe(true);
+});
+
+test('out of bounce', () => {
+  expect(board.isPlacePossible(destroyer, 8, 3, 'row')).toBe(false);
+  expect(board.isPlacePossible(destroyer, 3, 8, 'col')).toBe(false);
+});
+
+test('overlap', () => {
+  board.placeShip(destroyer, 5, 3, 'row');
+  let battleship = createShip(4);
+  expect(board.isPlacePossible(battleship, 3, 3, 'row')).toBe(false);
+});
+
+test.only('neighbor ship', () => {
+  board.placeShip(destroyer, 5, 3, 'row');
+  let battleship = createShip(2);
+  expect(board.isPlacePossible(battleship, 5, 4, 'row')).toBe(false);
+});
