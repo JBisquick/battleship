@@ -33,14 +33,16 @@ const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => 
     const x = i % 10;
 
     node.addEventListener('click', () => {
-      playGameboard.placeShip(shipList[ship], x, y, rotateButton.value);
+      if (playGameboard.isPlacePossible(shipList[ship], x, y, rotateButton.value)) {
+        playGameboard.placeShip(shipList[ship], x, y, rotateButton.value);
 
-      ship++;
-      if (ship < 5) {
-        setupGame(player, computer, playGameboard, compGameboard, ship);
-      } else {
-        createGameloop(player, computer, playGameboard, compGameboard);
-        placeText.style.display = 'none';
+        ship++;
+        if (ship < 5) {
+          setupGame(player, computer, playGameboard, compGameboard, ship);
+        } else {
+          createGameloop(player, computer, playGameboard, compGameboard);
+          placeText.style.display = 'none';
+        }
       }
     });
 

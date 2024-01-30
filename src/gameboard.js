@@ -56,10 +56,10 @@ function createGameboard () {
   };
 
   const isOutOfBounce = (ship, x, y, direction) => {
-    if (direction === 'row' && (x + ship.length >= 9)) {
+    if (direction === 'row' && (x + ship.length > 10)) {
       return true;
     }
-    if (direction === 'col' && (y + ship.length >= 9)) {
+    if (direction === 'col' && (y + ship.length > 10)) {
       return true;
     }
 
@@ -84,11 +84,17 @@ function createGameboard () {
 
   const isNeighbor = (ship, x, y, direction) => {
     for (let i = 1; i <= ship.length; i++) {
-      if (typeof board[y][x+1] === 'object' ||
-        typeof board[y][x-1] === 'object' ||
-        typeof board[y+1][x] === 'object' ||
-        typeof board[y-1][x] === 'object') {
-        return true
+      if (x !== 9 && board[y][x+1] !== 'empty' ) {
+        return true;
+      }
+      if (x !== 0 && board[y][x-1] !== 'empty' ) {
+        return true;
+      }
+      if (y !== 9 && board[y+1][x] !== 'empty') {
+        return true;
+      }
+      if (y !== 0 && board[y-1][x] !== 'empty') {
+        return true;
       }
 
       if (direction === 'col') {
