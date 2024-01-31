@@ -9,14 +9,14 @@ import {
   loadShipHover
 } from './dom.js';
 
-let carrier = createShip(5, 'carrier');
-let battleship = createShip(4, 'battleship');
-let destroyer = createShip(3, 'destroyer');
-let submarine = createShip(3, 'submarine');
-let patrolBoat = createShip(2, 'patrol boat');
-let shipList = [carrier, battleship, destroyer, submarine, patrolBoat]
-
 const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => {
+  let carrier = createShip(5, 'carrier');
+  let battleship = createShip(4, 'battleship');
+  let destroyer = createShip(3, 'destroyer');
+  let submarine = createShip(3, 'submarine');
+  let patrolBoat = createShip(2, 'patrol boat');
+  let shipList = [carrier, battleship, destroyer, submarine, patrolBoat]
+
   let container = document.querySelector('#player');
   container.innerHTML = '';
 
@@ -57,6 +57,18 @@ const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => 
 };
 
 const createGameloop = (player, computer, playGameboard, compGameboard) => {
+  let carrierComp = createShip(5, 'carrier');
+  let battleshipComp = createShip(4, 'battleship');
+  let destroyerComp = createShip(3, 'destroyer');
+  let submarineComp = createShip(3, 'submarine');
+  let patrolBoatComp = createShip(2, 'patrol boat');
+
+  compGameboard.placeShipRandom(carrierComp)
+  compGameboard.placeShipRandom(battleshipComp)
+  compGameboard.placeShipRandom(destroyerComp)
+  compGameboard.placeShipRandom(submarineComp)
+  compGameboard.placeShipRandom(patrolBoatComp)
+
   let container = document.querySelector('#player');
   container.innerHTML = '';
 

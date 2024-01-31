@@ -107,12 +107,35 @@ function createGameboard () {
     return false;
   };
 
+  const placeShipRandom = (ship) => {
+    const randomDirection = Math.floor(Math.random() * 2);
+    let direction;
+    if (randomDirection === 1) {
+      direction = 'row';
+    } else {
+      direction = 'col';
+    }
+
+    let notPlaced = true;
+    while (notPlaced) {
+      const randomCoord = Math.floor(Math.random() * 99);
+      const x = randomCoord % 10;
+      const y = Math.floor(randomCoord / 10);
+
+      if (isPlacePossible(ship, x, y, direction)) {
+        placeShip(ship, x, y, direction);
+        notPlaced = false;
+      } 
+    }
+  };
+
   return {
     getBoard,
     placeShip,
     recieveAttack,
     isGameOver,
-    isPlacePossible
+    isPlacePossible,
+    placeShipRandom
   };
 }
 
