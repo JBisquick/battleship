@@ -26,6 +26,7 @@ function createGameboard () {
       board[y][x] = 'missed';
     } else if (typeof cell === 'object') {
       cell.hit();
+      return cell;
     }
   };
 
