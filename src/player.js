@@ -78,7 +78,6 @@ function createPlayer() {
       // once two hits go along the column or row
       trySinkShip();
     }
-    console.log(nextAttack);
     return [randomCoord[0], randomCoord[1]];
   };
 
@@ -108,18 +107,20 @@ function createPlayer() {
     if (checkIfVisted(x, y + 1) === false) {
       nextAttack.push([x, y+1])
     }
-    console.log(nextAttack);
   };
 
   const trySinkShip = () => {
     nextAttack = [];
-    const changeInCoords = lastHits[0] - lastHits[1];
+    const diffInCoords = lastHits[0].map(function(item, index) {
+      return item - lastHits[1][index];
+    });
+    console.log(diffInCoords);
     for (const hit of lastHits) {
       const x = hit[0];
       const y = hit[1];
 
       // if along x axis
-      if (changeInCoords[0] !== 0) {
+      if (diffInCoords[0] !== 0) {
         if (checkIfVisted(x + 1, y) === false) {
           nextAttack.push([x+1, y])
         }
