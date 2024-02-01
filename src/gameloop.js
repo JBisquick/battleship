@@ -1,4 +1,6 @@
 import { createShip } from './ship.js'; 
+import { createGameboard } from './gameboard';
+import { createPlayer } from './player.js';
 import {
   loadComputerBoard,
   loadPlayerBoard,
@@ -8,6 +10,7 @@ import {
   loadShipText,
   loadShipHover
 } from './dom.js';
+
 
 const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => {
   let carrier = createShip(5, 'carrier');
@@ -100,4 +103,25 @@ const createGameloop = (player, computer, playGameboard, compGameboard) => {
   }
 };
 
-export { createGameloop, setupGame };
+const playAgain = () => {
+  let placeText = document.querySelector('.place-container');
+  placeText.style.display = 'block';
+
+  let computerDiv = document.querySelector('#computer');
+  computerDiv.remove();
+  let playerDiv = document.querySelector('#player');
+  playerDiv.innerHTML = '';
+
+  let gameover = document.querySelector('.over-container');
+  gameover.innerHTML = '';
+
+ 
+  let player = createPlayer();
+  let computer = createPlayer();
+  let playerBoard = createGameboard();
+  let computerBoard = createGameboard();
+  
+  setupGame(player, computer, playerBoard, computerBoard);
+};
+
+export { setupGame, playAgain };

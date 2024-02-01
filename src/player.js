@@ -114,7 +114,6 @@ function createPlayer() {
     const diffInCoords = lastHits[0].map(function(item, index) {
       return item - lastHits[1][index];
     });
-    console.log(diffInCoords);
     for (const hit of lastHits) {
       const x = hit[0];
       const y = hit[1];

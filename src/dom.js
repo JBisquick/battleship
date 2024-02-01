@@ -1,3 +1,5 @@
+import { playAgain } from './gameloop';
+
 const loadPlayerBoard = (gameboard) => {
   const board = document.querySelector('#player');
   for (const row of gameboard) {
@@ -63,12 +65,26 @@ const loadCompAttack = (x, y, playerNodes) => {
 };
 
 const loadGameover = (playerBoard, opBoard) => {
+  const container = document.querySelector('.over-container');
   const gameover = document.querySelector('.gameover');
 
   if (opBoard.isGameOver()) {
     gameover.textContent = 'You Have Won!';
   } else if (playerBoard.isGameOver()) {
     gameover.textContent = 'You Have Lost!';
+  }
+
+  if (opBoard.isGameOver() || playerBoard.isGameOver()) {
+    const replay = document.createElement('button');
+    container.appendChild(replay);
+    replay.textContent = 'Play Again';
+    replay.addEventListener('click', playAgain);
+
+    let opSpaces = document.querySelectorAll('.opSpace');
+    for (let node of opSpaces) {
+      let newNode = node.cloneNode(true);
+      node.parentNode.replaceChild(newNode, node);
+    }
   }
 };
 
