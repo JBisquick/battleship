@@ -70,7 +70,8 @@ const loadGameover = (playerBoard, opBoard) => {
 
   if (opBoard.isGameOver()) {
     gameover.textContent = 'You Have Won!';
-  } else if (playerBoard.isGameOver()) {
+  } 
+  if (playerBoard.isGameOver()) {
     gameover.textContent = 'You Have Lost!';
   }
 
