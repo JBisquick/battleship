@@ -27,7 +27,7 @@ const setupGame = (player, computer, playGameboard, compGameboard, ship = 0) => 
   loadShipText(shipList[ship].name);
   loadShipHover(shipList[ship].length);
   let placeText = document.querySelector('.place-container');
-  placeText.style.display = 'block';
+  placeText.style.display = 'flex';
 
   const rotateButton = document.querySelector('.rotate-button');
   rotateButton.addEventListener('click', function changeHover() {
@@ -105,7 +105,7 @@ const createGameloop = (player, computer, playGameboard, compGameboard) => {
 
 const playAgain = () => {
   let placeText = document.querySelector('.place-container');
-  placeText.style.display = 'block';
+  placeText.style.display = 'flex';
 
   let computerDiv = document.querySelector('#computer');
   computerDiv.remove();
